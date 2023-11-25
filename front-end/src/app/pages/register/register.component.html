@@ -1,0 +1,94 @@
+<main class="register-page">
+
+  <div class="register-page-title">
+    <p>Register</p>
+  </div>
+
+  <div class="row align-items-center">
+
+    <div class="mx-auto col-10 col-md-1 col-lg-4">
+      <form #registerForm=ngForm class="register-form">
+
+        <div class="form-group">
+          <label class="register-form-label">Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            class="form-control custom-input-field"
+            [(ngModel)]="name"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label class="register-form-label">Surname</label>
+          <input
+            type="text"
+            name="surname"
+            placeholder="Surname"
+            class="form-control custom-input-field"
+            [(ngModel)]="surname"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label class="register-form-label">Phone</label>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            class="form-control custom-input-field"
+            [(ngModel)]="phone"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label class="register-form-label">Email / Username</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            class="form-control custom-input-field"
+            [(ngModel)]="email"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label class="register-form-label">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            class="form-control custom-input-field"
+            [(ngModel)]="password"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label class="register-form-label">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            class="form-control custom-input-field"
+            [(ngModel)]="confirmPassword"
+          >
+
+        </div>
+
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary btn-light col-lg-3 mt-5" (click)="submitRegister()">Register
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+

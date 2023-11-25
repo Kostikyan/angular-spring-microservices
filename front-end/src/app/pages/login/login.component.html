@@ -1,0 +1,54 @@
+<main class="login-page">
+
+  <div class="login-page-title">
+    <p>Login</p>
+  </div>
+
+  <div class="row align-items-center">
+
+    <div class="mx-auto col-10 col-md-1 col-lg-4">
+      <form #loginForm=ngForm class="login-form">
+        <div class="form-group">
+          <label class="login-form-label">Username</label>
+          <input
+            type="email"
+            name="username"
+            #usernameInput
+            placeholder="Username"
+            class="form-control custom-input-field"
+            [(ngModel)]="username"
+          >
+          <span><img src="assets/images/icons/email.png" alt="" class="input-icon" id="email-icon"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="login-form-label">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            class="form-control custom-input-field"
+            #passwordInput
+            [(ngModel)]="password"
+          >
+          <span>
+            <img
+              src="{{eyeClicked ? 'assets/images/icons/eye.png' : 'assets/images/icons/closed-eye.png'}}"
+              alt="" class="input-icon" id="password-icon"
+              (click)="clickEye(passwordInput)"
+
+            >
+          </span>
+
+        </div>
+
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary btn-light col-lg-3 mt-5" (click)="submitLogin()">Login</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+
