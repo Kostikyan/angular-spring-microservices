@@ -8,9 +8,6 @@ import {environment} from "../environments/environment";
 })
 export class AuthService {
 
-  private token = '';
-  private currentUser = null;
-
   constructor(private http: HttpClient) {
   }
 
@@ -43,27 +40,29 @@ export class AuthService {
     return true;
   }
 
-  getToken(): string {
-    return this.token;
+  logout() {
+    sessionStorage.clear();
+  }
+
+  getToken(): string | null {
+    return sessionStorage.getItem('token');
   }
 
   setToken(token: string) {
-    this.token = token;
-  }
-
-  clearToken(): void {
-    this.token = '';
+    sessionStorage.setItem('token', token);
   }
 
   getCurrentUser(): any {
-    return this.currentUser;
+    return sessionStorage.getItem('currentUser');
   }
 
   setCurrentUser(user: any) {
-    this.currentUser = user;
+    sessionStorage.setItem('currentUser', user);
+    sessionStorage.setItem('currentUserEmail', user.email)
   }
 
-  clearCurrentUser() {
-    this.currentUser = null;
+  getCurrentUserEmail() {
+    return sessionStorage.getItem('currentUserEmail');
   }
+
 }
