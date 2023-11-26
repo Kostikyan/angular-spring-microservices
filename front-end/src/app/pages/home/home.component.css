@@ -1,0 +1,33 @@
+main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images2.alphacoders.com/132/1329016.png");
+  background-size: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main h1 {
+  font-size: 60px;
+  font-family: 'Space Grotesk', sans-serif;
+
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.9332107843137255) 6%,
+    rgba(0,112,255,0.9556197478991597) 21%,
+    rgba(255,111,0,0.8295693277310925) 36%,
+    rgba(154,0,255,0.8295693277310925) 67%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-decoration: underline 2px rgba(255, 255, 255, 0);
+  transition: text-decoration-color 1s;
+}
+
+main h1:hover {
+  cursor: default;
+  text-decoration-color: black;
+}
