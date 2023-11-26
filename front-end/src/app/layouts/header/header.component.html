@@ -1,2 +1,19 @@
 <header class="header">
+  <div class="title-div text-center">
+    <p class="title">ItUniverse</p>
+  </div>
+
+
+  <div class="pages-div">
+    <a class="nav-item nav-link active" routerLink="home">Home <span class="sr-only">(current)</span></a>
+    <a class="nav-item nav-link" routerLink="#">Some Page</a>
+    <a class="nav-item nav-link" routerLink="#">Some Page</a>
+    <a class="nav-item nav-link disabled" routerLink="#">Some Page</a>
+  </div>
+
+
+  <div class="user-info-div">
+    <p id="logout" (click)="logout()">Logout</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="45px">
+  </div>
 </header>
