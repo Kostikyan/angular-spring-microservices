@@ -35,7 +35,14 @@
   cursor: pointer;
   top: 8px;
   right: 15px;
+  transition: box-shadow .3s;
+  border-radius: 100px;
 }
+
+.user-info-div img:hover {
+  box-shadow: 0 0 11px rgb(8, 42, 101);
+}
+
 
 #logout {
   cursor: pointer;
@@ -48,4 +55,24 @@
 #logout:hover {
   transition: 300ms;
   color: rgb(128, 128, 128);
+}
+
+.dropdown-custom {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  padding: 10px 20px 10px 20px;
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-custom a {
+  cursor: pointer;
+  color: rgb(128, 128, 128);
+}
+
+.hidden {
+  display: none;
 }

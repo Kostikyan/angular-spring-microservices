@@ -53,16 +53,11 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    return sessionStorage.getItem('currentUser');
+    return JSON.parse(sessionStorage.getItem('currentUser')!);
   }
 
   setCurrentUser(user: any) {
-    sessionStorage.setItem('currentUser', user);
-    sessionStorage.setItem('currentUserEmail', user.email)
-  }
-
-  getCurrentUserEmail() {
-    return sessionStorage.getItem('currentUserEmail');
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
   }
 
 }

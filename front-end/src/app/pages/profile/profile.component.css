@@ -1,0 +1,119 @@
+main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images2.alphacoders.com/132/1329016.png");
+  background-size: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-data {
+  height: 600px;
+  width: 1200px;
+  border-radius: 10px;
+  background: rgb(255, 255, 255, 0.5);
+}
+
+.user-data-img {
+  display: flex;
+  justify-content: center;
+  width: 700px;
+  height: 100%;
+  align-items: center;
+}
+
+.user-data img {
+  width: 450px;
+}
+
+.user-data-text {
+  width: auto;
+
+  position: absolute;
+  top: 250px;
+  right: 320px;
+}
+
+.user-data-text h2 {
+  font-size: 40px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.user-data-text h3 span {
+  border-radius: 5px;
+  padding: 2px;
+  background: green;
+  cursor: default;
+}
+
+.user-data-text h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.edit-info {
+  position: absolute;
+  top: 500px;
+  right: 434px;
+}
+
+.edit-info button {
+  width: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 55%;
+  height: 50%;
+  position: absolute;
+  top: 22%;
+  right: 25%;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: #06D85F;
+}
+
