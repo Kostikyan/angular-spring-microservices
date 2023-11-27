@@ -14,6 +14,14 @@
 
   <div class="user-info-div">
     <p id="logout" (click)="logout()">Logout</p>
-    <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="45px">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+      width="45px"
+      (click)="showDropdown(dropdown)"
+    >
+    <div class="dropdown dropdown-custom hidden" #dropdown>
+      <a [routerLink]="'profile/' + currentUserId">Profile</a>
+      <a (click)="logout()" class="mt-2">Logout</a>
+    </div>
   </div>
 </header>

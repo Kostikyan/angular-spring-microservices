@@ -1,0 +1,57 @@
+<main>
+  <div class="user-data">
+
+    <div class="user-data-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="">
+    </div>
+
+    <div class="user-data-text">
+      <h2>{{user?.name + ' ' + user?.surname | titlecase}}</h2>
+
+      <hr>
+
+      <h3><span>Email </span> <b class="ml-2">{{user?.email}}</b></h3>
+      <h3><span>Phone </span> <b class="ml-2">{{user?.phone}}</b></h3>
+      <h3><span>Role  </span> <b class="ml-2">{{user?.role | titlecase}}</b></h3>
+    </div>
+
+    <ng-container *ngIf="user?.id == id">
+      <div class="edit-info">
+        <button class="btn btn-info" (click)="showPopup(popup)" href="#popup1">Edit</button>
+      </div>
+
+      <div id="popup1" class="hidden" #popup>
+        <div class="popup">
+          <h2>Edit Data</h2>
+          <a class="close" (click)="showPopup(popup)">&times;</a>
+          <div class="content">
+            <form #editForm=ngForm class="mt-3">
+
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Name" [(ngModel)]="name">
+              </div>
+
+              <div class="form-group">
+                <label>Surname</label>
+                <input type="text" name="surname" class="form-control" placeholder="Surname" [(ngModel)]="surname">
+              </div>
+
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" class="form-control" placeholder="Phone" [(ngModel)]="phone">
+              </div>
+
+              <div class="btn-group">
+                <button class="btn btn-primary btn-success mt-2" (click)="edit(popup)">Confirm</button>
+                <button class="btn btn-primary btn-danger mt-2" (cancel)="showPopup(popup)">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+</main>

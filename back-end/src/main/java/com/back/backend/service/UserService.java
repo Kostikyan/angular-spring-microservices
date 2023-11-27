@@ -1,6 +1,8 @@
 package com.back.backend.service;
 
+import com.back.backend.dto.EditUserRequestDto;
 import com.back.backend.dto.RegisterRequestDto;
+import com.back.backend.dto.UserDto;
 import com.back.backend.entity.User;
 
 import java.util.List;
@@ -10,9 +12,11 @@ public interface UserService {
 
     List<User> findAll();
 
-    Optional<User> findById(Long id);
+    User findById(Long id);
 
     User save(RegisterRequestDto dto);
 
     Optional<User> findByEmail(String email);
+
+    UserDto edit(EditUserRequestDto dto);
 }
