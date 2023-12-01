@@ -2,7 +2,15 @@
   <div class="user-data">
 
     <div class="user-data-img">
-      <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="">
+      <img
+        src="{{profilePictureName}}"
+        alt="" [ngClass]="user?.id == id ? 'profile-picture' : null"
+        style="border-radius: 360px"
+      >
+
+      <div *ngIf="user?.id == id" class="middle" (click)="showPopup(popup1)">
+        <div class="text">Click to change</div>
+      </div>
     </div>
 
     <div class="user-data-text">
@@ -50,8 +58,28 @@
           </div>
         </div>
       </div>
-
     </ng-container>
+
+    <div id="popup2" class="hidden" #popup1>
+      <div class="popup" style="height: 250px;">
+        <h2>Change profile picture</h2>
+        <a class="close" (click)="showPopup(popup1)">&times;</a>
+        <div class="content">
+<!--          <form #changePicture=ngForm class="mt-3" enctype="multipart/form-data">-->
+
+            <div class="form-group">
+              <label>Profile picture</label>
+              <input type="file" name="file" class="form-control" (change)="selectFile($event)" style="padding-bottom: 37px">
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-primary btn-success mt-2" (click)="changeImg(popup1)">Confirm</button>
+              <button class="btn btn-primary btn-danger mt-2" (cancel)="showPopup(popup1)">Cancel</button>
+            </div>
+<!--          </form>-->
+        </div>
+      </div>
+    </div>
 
   </div>
 </main>

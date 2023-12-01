@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router, private toastr: ToastrService) {
   }
 
   login(body: any): Observable<any> {
@@ -19,6 +21,9 @@ export class AuthService {
       if (res) {
         this.setToken(res?.token);
         this.setCurrentUser(res);
+        this.route.navigate(['home']).then().catch();
+      } else {
+        this.toastr.error('Invalid user credentials');
       }
     })
 
@@ -30,8 +35,6 @@ export class AuthService {
     let post = this.http.post(path, body);
 
     post.subscribe((res: any) => {
-      this.setToken(res?.token);
-      this.setCurrentUser(res);
       return true;
     }, error => {
       return false;
