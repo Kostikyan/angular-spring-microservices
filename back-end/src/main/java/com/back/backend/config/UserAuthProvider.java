@@ -59,8 +59,8 @@ public class UserAuthProvider {
 
         UserDto employee = UserDto.builder()
                 .email(decoded.getIssuer())
-                .name(decoded.getClaim("firstname").asString())
-                .surname(decoded.getClaim("lastname").asString())
+                .name(decoded.getClaim("name").asString())
+                .surname(decoded.getClaim("surname").asString())
                 .role(decoded.getClaim("role").as(Role.class))
                 .build();
 

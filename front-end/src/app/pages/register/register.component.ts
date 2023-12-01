@@ -41,7 +41,7 @@ export class RegisterComponent {
     if (!isOk) {
       this.toastr.error('Something gone wrong!')
     } else {
-      this.router.navigate(['home']).catch().then();
+      this.router.navigate(['login']).catch().then();
     }
 
   }

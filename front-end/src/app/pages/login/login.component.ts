@@ -19,7 +19,7 @@ export class LoginComponent {
 
   eyeClicked: boolean = false;
 
-  constructor(private toastr: ToastrService, private auth: AuthService, private route: Router) {
+  constructor(private toastr: ToastrService, private auth: AuthService) {
   }
 
   clickEye(passwordInput: any) {
@@ -42,11 +42,7 @@ export class LoginComponent {
       password: this.password
     }
 
-    this.auth.login(body).subscribe(res => {
-      this.route.navigate(['home']).then().catch();
-    }, error => {
-      this.toastr.error('Invalid user credentials');
-    });
+    this.auth.login(body);
   }
 
 

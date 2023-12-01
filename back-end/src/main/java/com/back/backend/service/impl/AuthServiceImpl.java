@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         User user = byEmail.get();
-        if (passwordEncoder.matches(user.getPassword(), credentials.getPassword())) {
+        if (!passwordEncoder.matches(credentials.getPassword(), user.getPassword())) {
             throw new WrongUserCredentials("Wrong password", HttpStatus.BAD_REQUEST);
         }
 
@@ -58,10 +58,6 @@ public class AuthServiceImpl implements AuthService {
 
         User save = userService.save(registerData);
 
-        // map to dto and set token
-        UserDto userDto = userMapper.userToDto(save);
-        save.setToken(userAuthProvider.createToken(userDto));
-
-        return userDto;
+        return userMapper.userToDto(save);
     }
 }

@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../http.service";
 import {environment} from "../../../environments/environment";
 import {FormsModule} from "@angular/forms";
 import {ProfileService} from "./profile.service";
 import {ToastrService} from "ngx-toastr";
+import {timeout} from "rxjs";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgOptimizedImage],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -23,11 +24,16 @@ export class ProfileComponent implements OnInit {
   surname!: string;
   phone!: string;
 
+  selectedFiles!: FileList;
+  currentFile!: File;
+
+  profilePictureName!: string;
+
   constructor(private activatedRoute: ActivatedRoute,
               private http: HttpService,
               private service: ProfileService,
               private toastr: ToastrService
-              ) {
+  ) {
   }
 
   ngOnInit() {
@@ -35,9 +41,8 @@ export class ProfileComponent implements OnInit {
 
     this.http.get(environment.localhost + environment.users + this.id)
       .subscribe(res => {
-        console.log(res);
         this.user = res;
-
+        this.profilePictureName = this.user.profilePicture ? `/assets/images/user/${this.user.profilePicture}` : "https://cdn-icons-png.flaticon.com/512/3177/3177440.png";
         this.name = this.user.name;
         this.surname = this.user.surname;
         this.phone = this.user.phone;
@@ -45,7 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   showPopup(popup: any) {
-    if(popup.classList.contains('hidden')) {
+    if (popup.classList.contains('hidden')) {
       popup.classList.remove('hidden');
     } else {
       popup.classList.add('hidden');
@@ -71,5 +76,21 @@ export class ProfileComponent implements OnInit {
         popup.classList.add('hidden');
         this.toastr.success("Data successfully edited!");
       });
+  }
+
+  changeImg(popup: any) {
+    this.currentFile = this.selectedFiles.item(0) as File;
+    this.service.changeImg(this.currentFile, this.user.id)
+      .subscribe((res: any) => {
+        this.profilePictureName = res.profilePicture;
+        popup.classList.add('hidden');
+        this.toastr.success("Profile picture successfully changed!");
+        setTimeout(() => {}, 2000);
+        window.location.reload();
+      });
+  }
+
+  selectFile(event: any) {
+    this.selectedFiles = event.target.files;
   }
 }
