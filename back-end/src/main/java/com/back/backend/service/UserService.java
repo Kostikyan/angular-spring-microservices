@@ -22,4 +22,5 @@ public interface UserService {
     UserDto edit(EditUserRequestDto dto);
 
     UserDto changeProfilePicture(MultipartFile file, int id);
+
 }

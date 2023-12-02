@@ -1,0 +1,34 @@
+<main>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+        </tr>
+        </thead>
+        <tbody class="table-secondary">
+        <tr *ngFor="let item of pageSlice">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.surname}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.role}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="custom-pagination">
+        <mat-paginator
+                [length]="this.totalItems"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10]"
+                showFirstLastButtons
+                (page)="onPageChange($event)"
+        ></mat-paginator>
+    </div>
+</main>

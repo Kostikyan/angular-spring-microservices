@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -26,11 +28,17 @@ public class UserEndpoint {
         return userService.edit(editUserRequestDto);
     }
 
-    @PostMapping(path = "/change-profile-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/change-profile-picture/{id}",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public UserDto changeProfilePicture(
             @RequestPart(name = "file") MultipartFile file,
-            @PathVariable("id") int id)
-    {
+            @PathVariable("id") int id
+    ) {
         return userService.changeProfilePicture(file, id);
+    }
+
+    @GetMapping(path = "all")
+    public List<UserDto> findAll() {
+        return userService.findAll().stream().map(userMapper::userToDto).toList();
     }
 }
