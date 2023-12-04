@@ -6,7 +6,7 @@ import {environment} from "../../../environments/environment";
 import {FormsModule} from "@angular/forms";
 import {ProfileService} from "./profile.service";
 import {ToastrService} from "ngx-toastr";
-import {timeout} from "rxjs";
+import {ProfileModel} from "./profile.model";
 
 @Component({
   selector: 'app-profile',
@@ -20,14 +20,11 @@ export class ProfileComponent implements OnInit {
 
   user: any;
 
-  name!: string;
-  surname!: string;
-  phone!: string;
+  profile: ProfileModel = new ProfileModel();
 
   selectedFiles!: FileList;
   currentFile!: File;
 
-  profilePictureName!: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private http: HttpService,
@@ -42,10 +39,11 @@ export class ProfileComponent implements OnInit {
     this.http.get(environment.localhost + environment.users + this.id)
       .subscribe(res => {
         this.user = res;
-        this.profilePictureName = this.user.profilePicture ? `/assets/images/user/${this.user.profilePicture}` : "https://cdn-icons-png.flaticon.com/512/3177/3177440.png";
-        this.name = this.user.name;
-        this.surname = this.user.surname;
-        this.phone = this.user.phone;
+
+        this.profile.profilePictureName = this.user.profilePicture ? `/assets/images/user/${this.user.profilePicture}` : "https://cdn-icons-png.flaticon.com/512/3177/3177440.png";
+        this.profile.name = this.user.name;
+        this.profile.surname = this.user.surname;
+        this.profile.phone = this.user.phone;
       })
   }
 
@@ -60,18 +58,18 @@ export class ProfileComponent implements OnInit {
   edit(popup: any) {
     let body = {
       id: this.user.id,
-      name: this.name,
-      surname: this.surname,
-      phone: this.phone
+      name: this.profile.name,
+      surname: this.profile.surname,
+      phone: this.profile.phone
     }
 
     this.service.edit(body)
       .subscribe(res => {
         this.user = res;
 
-        this.name = this.user.name;
-        this.surname = this.user.surname;
-        this.phone = this.user.phone;
+        this.profile.name = this.user.name;
+        this.profile.surname = this.user.surname;
+        this.profile.phone = this.user.phone;
 
         popup.classList.add('hidden');
         this.toastr.success("Data successfully edited!");
@@ -82,7 +80,7 @@ export class ProfileComponent implements OnInit {
     this.currentFile = this.selectedFiles.item(0) as File;
     this.service.changeImg(this.currentFile, this.user.id)
       .subscribe((res: any) => {
-        this.profilePictureName = res.profilePicture;
+        this.profile.profilePictureName = res.profilePicture;
         popup.classList.add('hidden');
         this.toastr.success("Profile picture successfully changed!");
         setTimeout(() => {}, 2000);
